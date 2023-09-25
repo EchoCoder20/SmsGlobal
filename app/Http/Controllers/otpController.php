@@ -21,7 +21,7 @@ class otpController extends Controller
      
         
         $countryCode = "968";
-       $userPhone="99521113";
+       $userPhone="******";
         $api_key=config('smsGlobal.api_key');
         $secter_key=config('smsGlobal.secret_key');
         Credentials::set($api_key,$secter_key);
@@ -67,14 +67,11 @@ class otpController extends Controller
         $response = $otp->cancelByRequestId($requestId);
            
             
-            if($response['status']=='Cancelled'){
+            
                 Session::forget('id');
                 
                 return true;
-            }
-            else{
-                return false;
-            }
+           
         }
         catch (\Exception $e){
             \Log::error($e->getMessage());
@@ -97,15 +94,11 @@ class otpController extends Controller
         try{
           
             $response = $otp->verifyByRequestId($requestId, $userCode);
-        if($response['status']=='Verified'){
+       
             Session::forget('id');
             
             return true;
-        }
-        else{
-                return false;
-            }
-            // 
+        
             
         }
         catch (\Exception $e){
