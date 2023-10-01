@@ -20,7 +20,7 @@ class otpController extends Controller
     public function sendOTP(Request $request){
      
         
-        $countryCode = "968";
+        $countryCode = "00968";
        $userPhone="******";
         $api_key=config('smsGlobal.api_key');
         $secter_key=config('smsGlobal.secret_key');
