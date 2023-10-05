@@ -22,11 +22,14 @@ class otpController extends Controller
         
         $countryCode = "00968";
        $userPhone="******";
+        $phone_number = $countryCode . $userPhone;
+        if($phone_number[5]=="7" || $phone_number[5]=="9")
+       {
         $api_key=config('smsGlobal.api_key');
         $secter_key=config('smsGlobal.secret_key');
         Credentials::set($api_key,$secter_key);
         $otp=new Otp();
-        $phone_number = $countryCode . $userPhone;
+        
 
         try{
             $responce=$otp->send(
@@ -51,6 +54,15 @@ class otpController extends Controller
 			return false;
          
             }
+      
+      
+       }
+       else
+       {
+        return "Phone Number is Not Valid";
+       }
+        
+
       
       
 
